@@ -1,28 +1,30 @@
 from main import *
 
 run_cases = [
-    (101, 100, True, False, False),
-    (50, 100, False, True, False),
-    (100, 100, False, False, True),
+    (7, True),
+    (-7, False),
+    (9, False),
+    (23, True),
 ]
 
 submit_cases = run_cases + [
-    (150, 70, True, False, False),
-    (80, 150, False, True, False),
-    (0, 0, False, False, True),
-    (1, 1, False, False, True),
-    (1000, 500, True, False, False),
-    (500, 1000, False, True, False),
+    (-1, False),
+    (0, False),
+    (1, False),
+    (2, True),
+    (4, False),
+    (31, True),
+    (100, False),
 ]
 
 
-def test(input1, input2, expected_output1, expected_output2, expected_output3):
+def test(input1, expected_output):
     print("---------------------------------")
-    print(f"Inputs: {input1}, {input2}")
-    print(f"Expecting: {expected_output1}, {expected_output2}, {expected_output3}")
-    result = combat_evaluation(input1, input2)
+    print(f"Input number: {input1}")
+    print(f"Expecting: {expected_output}")
+    result = is_prime(input1)
     print(f"Actual: {result}")
-    if result == (expected_output1, expected_output2, expected_output3):
+    if result == expected_output:
         print("Pass")
         return True
     print("Fail")
@@ -50,4 +52,3 @@ if "__RUN__" in globals():
     test_cases = run_cases
 
 main()
-
