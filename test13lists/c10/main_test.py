@@ -2,31 +2,55 @@ from main import *
 
 run_cases = [
     (
-        ["Shortsword", "Healing Potion", "Iron Breastplate", "Kite Shield"],
-        ["Kite Shield", "Iron Breastplate", "Healing Potion", "Shortsword"],
+        ["darn it", "this dang thing won't work", "lets fight one on one"],
+        ["darn it", "this thing won't work", "lets fight one on one"],
+        [0, 1, 0],
     ),
-    ([1, 2, 300, 4, 5], [5, 4, 300, 2, 1]),
 ]
 
 submit_cases = run_cases + [
-    ([], []),
-    (["a"], ["a"]),
-    ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]),
     (
-        ["apple", "banana", "cherry", "date", "elderberry"],
-        ["elderberry", "date", "cherry", "banana", "apple"],
+        [
+            "well dang it",
+            "dang the whole dang thing",
+            "kill that knight, dang it",
+            "get him!",
+            "donkey kong",
+            "oh come on, get them",
+            "run away from the dang baddies",
+        ],
+        [
+            "well it",
+            "the whole thing",
+            "kill that knight, it",
+            "get him!",
+            "donkey kong",
+            "oh come on, get them",
+            "run away from the baddies",
+        ],
+        [1, 2, 1, 0, 0, 0, 1],
     ),
-    (["hello", "world"], ["world", "hello"]),
 ]
 
 
-def test(input, expected_output):
+def test(input, expected_output1, expected_output2):
     print("---------------------------------")
-    print(f"Input array: {input}")
-    print(f"Expected reversed array: {expected_output}")
-    result = reverse_array(input)
-    print(f"Actual reversed array: {result}")
-    if result == expected_output:
+    print(f"Input:")
+    print(f" * messages: {input}")
+    print("Expecting:")
+    print(f" * filtered messages: {expected_output1}")
+    print(f" * words removed: {expected_output2}")
+    print("Actual:")
+    try:
+        result = filter_messages(input)
+        print(f" * filtered messages: {result[0]}")
+        print(f" * words removed: {result[1]}")
+    except Exception as e:
+        print(f"Error: {e}")
+        print("Fail")
+        return False
+
+    if result == (expected_output1, expected_output2):
         print("Pass")
         return True
     print("Fail")
